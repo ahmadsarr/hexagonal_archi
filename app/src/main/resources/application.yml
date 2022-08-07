@@ -1,0 +1,43 @@
+server:
+  servlet:
+    context-path: ${ROOT_PATH:/api}
+  port: ${SERVER_PORT:8081}
+spring:
+  application:
+    name: template
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/template
+    password: root
+    username: root
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 30000
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - infos
+          - prometheus
+          - version
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    enable:
+      jvm: false
+      tomcat: false
+      logback: false
+      process: false
+      system: false
+      executor: false
+      disk: false
+      application: false
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
